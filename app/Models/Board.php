@@ -14,9 +14,9 @@ class Board extends Model
         'description',
     ];
 
-    public function columns()
+    public function cards()
     {
-        return $this->hasMany(Column::class);
+        return $this->hasMany(Card::class);
     }
 
     public function users()
@@ -26,6 +26,6 @@ class Board extends Model
 
     public function tasks()
     {
-        return $this->hasManyThrough(Task::class, Column::class);
+        return $this->hasManyThrough(Task::class, Card::class);
     }
 }

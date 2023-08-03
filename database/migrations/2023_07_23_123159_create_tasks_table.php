@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('description')->nullable()->default(null);
-            $table->foreignId('column_id')->constrained()->onDelete('cascade');
+            $table->foreignId('card_id')->constrained()->onDelete('cascade');
             $table->dateTime('due_date')->nullable()->default(null);
             $table->integer('priority')->default(0);
             $table->boolean('completed')->default(false);

@@ -16,14 +16,14 @@ class Task extends Model
     protected $fillable = [
         'title',
         'description',
-        'column_id',
+        'card_id',
         'due_date',
         'priority',
     ];
 
-    public function column()
+    public function card()
     {
-        return $this->belongsTo(Column::class);
+        return $this->belongsTo(Card::class);
     }
 
     public function board()

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Column>
  */
-class ColumnFactory extends Factory
+class CardFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class ColumnFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(),
+            'name' => fake()->sentence(),
             'description' => fake()->paragraph(),
             'board_id' => 1,
             'order' => 1,
