@@ -2,9 +2,6 @@
     @push('scripts')
         @vite('resources/js/board.js')
     @endpush
-    @push('styles')
-        @vite('resources/css/board.css')
-    @endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $board->title }}
