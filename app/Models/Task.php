@@ -19,6 +19,7 @@ class Task extends Model
         'card_id',
         'due_date',
         'priority',
+        'order',
     ];
 
     public function card()

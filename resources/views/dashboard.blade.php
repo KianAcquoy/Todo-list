@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="flex flex-wrap max-w-[80vw] mx-auto">
             @foreach (Auth::user()->boards as $board)
-                <x-board-item :board="$board" />
+                <x-todo.board-item :board="$board" />
             @endforeach
         </div>
     </div>

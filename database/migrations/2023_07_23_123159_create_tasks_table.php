@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('due_date')->nullable()->default(null);
             $table->integer('priority')->default(0);
             $table->boolean('completed')->default(false);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
