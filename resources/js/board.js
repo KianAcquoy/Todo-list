@@ -13,9 +13,9 @@ async function sendToServer(tasks) {
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
-      });
+    });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
 }
 

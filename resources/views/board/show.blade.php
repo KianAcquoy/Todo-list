@@ -15,10 +15,17 @@
             @endforeach
         </div>
     </div>
+
+    
+    @php
+        $currentinfo = [
+            'board_id' => $board->id,
+            'user_id' => Auth::user()->id,
+        ];
+    @endphp
     <script>
-        localStorage.setItem('currentInformation', JSON.stringify({
-            'board_id': {{ $board->id }},
-            'user_id': {{ Auth::user()->id }},
-        }));
+        let currentInformation = @json($currentinfo);
+        localStorage.setItem('currentInformation', JSON.stringify(currentInformation));
     </script>
+
 </x-app-layout>

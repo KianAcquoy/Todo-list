@@ -22,7 +22,7 @@ class DataController extends Controller
                 'message' => 'No tasks to save',
             ]);
         }
-        
+    
         foreach ($newtasks as $newtask) {
             $task = $tasks->where('id', $newtask['id'])->first();
             $task->update([
