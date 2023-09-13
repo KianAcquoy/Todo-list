@@ -15,5 +15,10 @@
             @endforeach
         </div>
     </div>
-    <div class="draggable"></div>
+    <script>
+        localStorage.setItem('currentInformation', JSON.stringify({
+            'board_id': {{ $board->id }},
+            'user_id': {{ Auth::user()->id }},
+        }));
+    </script>
 </x-app-layout>
