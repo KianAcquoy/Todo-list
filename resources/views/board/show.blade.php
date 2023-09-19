@@ -16,16 +16,6 @@
         </div>
     </div>
 
-    
-    @php
-        $currentinfo = [
-            'board_id' => $board->id,
-            'user_id' => Auth::user()->id,
-        ];
-    @endphp
-    <script>
-        let currentInformation = @json($currentinfo);
-        localStorage.setItem('currentInformation', JSON.stringify(currentInformation));
-    </script>
+    <div id="app-information" class="hidden" data-board-id="{{ $board->id }}" data-user-id="{{ Auth::user()->id }}"></div>
 
 </x-app-layout>

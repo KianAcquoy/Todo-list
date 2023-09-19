@@ -4,5 +4,5 @@
     <div class="font-medium">
         {{ $card->name }}
     </div>
-    <x-todo.card-items :tasks="$card->tasks" :card="$card" />
+    <x-todo.card-item-container :tasks="$card->tasks" :card="$card" />
 </div>

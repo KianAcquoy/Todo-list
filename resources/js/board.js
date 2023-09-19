@@ -2,12 +2,12 @@ const draggable = document.getElementsByClassName("draggable");
 const dropzone = document.getElementsByClassName("dropzone");
 
 async function sendToServer(tasks) {
-    let currentinfo = JSON.parse(localStorage.getItem('currentInformation'));
+    let appinfo = document.getElementById("app-information").dataset;
     const response = await fetch('http://127.0.0.1:8000/api/save-board', {
         method: "POST",
         body: JSON.stringify({
-          user_id: currentinfo.user_id,
-          board_id: currentinfo.board_id,
+          user_id: appinfo.userId,
+          board_id: appinfo.boardId,
           tasks: tasks,
         }),
         headers: {

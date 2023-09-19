@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\ProfileController;
 
@@ -16,14 +17,13 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::resource('boards', BoardController::class)->middleware('auth');
+Route::resource('tasks', TaskController::class)->middleware('auth');
+Route::get('/boards', [BoardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

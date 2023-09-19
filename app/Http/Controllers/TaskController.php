@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Board;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
-class BoardController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('board.index');
+        //
     }
 
     /**
@@ -36,9 +36,9 @@ class BoardController extends Controller
      */
     public function show(string $id)
     {
-        $board = Board::findOrFail($id);
-        return view('board.show', [
-            'board' => $board,
+        $task = Task::findOrFail($id);
+        return view('task.show', [
+            'task' => $task,
         ]);
     }
 
