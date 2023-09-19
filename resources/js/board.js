@@ -15,7 +15,6 @@ async function sendToServer(tasks) {
         }
     });
     const data = await response.json();
-    // console.log(data);
     return data;
 }
 
@@ -63,20 +62,34 @@ function saveBoard() {
 
 
 // Drag and drop
-for (let element of draggable) {
+Array(...draggable).forEach(element => {
     element.addEventListener("dragstart", (e) => {
         e.dataTransfer.setData("text/plain", element.id);
-        element.style.opacity = "0.5";
+        element.style.opacity = "0.3";
+        setTimeout(() => element.classList.add("dragging"), 0);
     });
 
     element.addEventListener("dragend", () => {
         element.style.opacity = "1";
+        element.classList.remove("dragging")
     });
-};
+});
 
-for (let element of dropzone) {
+let currentlist = null;
+Array(...dropzone).forEach(element => {
     element.addEventListener("dragover", (e) => {
         e.preventDefault();
+        const draggingItem = document.querySelector(".dragging");
+        if (draggingItem && e.target.classList.contains("dropzone")) {
+            currentlist = e.target;
+        }
+        if (currentlist) {
+            let siblings = [...currentlist.querySelectorAll(".draggable:not(.dragging)")];
+            let nextSibling = siblings.find(sibling => {
+                return (e.clientY < sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2);
+            });
+            currentlist.insertBefore(draggingItem, nextSibling);
+        }
     });
     
     element.addEventListener("drop", async (e) => {
@@ -88,4 +101,4 @@ for (let element of dropzone) {
         }
         await saveBoard();
     });
-}
+});
