@@ -14,15 +14,14 @@ async function sendToServer(tasks) {
           "Content-type": "application/json; charset=UTF-8"
         }
     });
-    const data = await response.json();
-    return data;
+    return await response.json();
 }
 
 function getTasks() {
     const tasks = [];
     for (let element of draggable) {
-        let cardid = element.parentElement.parentElement.id.split("-")[1];
-        let taskid = element.children[0].id.split("-")[1];
+        let cardid = element.parentElement.parentElement.dataset.id;
+        let taskid = element.children[0].dataset.id;
         if (cardid != undefined && taskid != undefined) {
             let taskdata = getTaskLocation(taskid);
             tasks.push({
@@ -38,10 +37,10 @@ function getTasks() {
 function getTaskLocation(taskid) {
     const task = document.getElementById(`task-${taskid}`);
     const card = task.parentElement.parentElement.parentElement;
-    const cardid = card.id.split("-")[1];
+    const cardid = card.dataset.id;
     let order = 0;
     for (let element of card.lastChild.children) {
-        if (element.id.split("-")[1] == taskid) {
+        if (element.dataset.id == taskid) {
             break;
         }
         order++;
@@ -57,8 +56,6 @@ function saveBoard() {
     const tasks = getTasks();
     return sendToServer(tasks);
 }
-
-
 
 
 // Drag and drop
@@ -83,7 +80,7 @@ Array(...dropzone).forEach(element => {
         if (draggingItem && e.target.classList.contains("dropzone")) {
             currentlist = e.target;
         }
-        if (currentlist) {
+        if (currentlist && draggingItem) {
             let siblings = [...currentlist.querySelectorAll(".draggable:not(.dragging)")];
             let nextSibling = siblings.find(sibling => {
                 return (e.clientY < sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2);
