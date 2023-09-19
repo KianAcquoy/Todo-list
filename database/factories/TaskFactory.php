@@ -18,7 +18,7 @@ class TaskFactory extends Factory
     {
         return [
             'name' => fake()->sentence(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->sentence(),
             'card_id' => 1,
             'due_date' => fake()->dateTimeBetween('now', '+1 year'),
             'priority' => fake()->numberBetween(0, 3),
