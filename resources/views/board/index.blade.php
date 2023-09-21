@@ -10,6 +10,7 @@
             @foreach (Auth::user()->boards as $board)
                 <x-todo.board-item :board="$board" />
             @endforeach
+            <x-todo.new-board />
         </div>
     </div>
 </x-app-layout>
