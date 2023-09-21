@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite('resources/js/board/modal.js')
         @stack('scripts')
         @stack('styles')
     </head>
@@ -33,6 +34,7 @@
             <main>
                 {{ $slot }}
             </main>
+            <x-todo.modal />
         </div>
     </body>
 </html>

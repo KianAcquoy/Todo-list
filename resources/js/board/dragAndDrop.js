@@ -86,6 +86,7 @@ Array(...dropzone).forEach(element => {
                 return (e.clientY < sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2);
             });
             currentlist.insertBefore(draggingItem, nextSibling);
+            currentlist = null;
         }
     });
     

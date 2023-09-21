@@ -6,10 +6,13 @@ modalClose.addEventListener('click', () => {
     modal.classList.add('hidden');
 });
 
-export function modalPage(url = "") {
+export function modalPage(url = "", data = {}) {
     if (url === "") {
         return;
     } else {
+        const queryParams = new URLSearchParams(data);
+        url = url + "?" + queryParams.toString();
+        console.log(url)
         fetch(url)
             .then(response => response.text())
             .then(data => {

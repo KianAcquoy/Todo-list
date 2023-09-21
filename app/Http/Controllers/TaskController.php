@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,11 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $cardid = request()->query('cardid');
+        $card = Card::findOrFail($cardid);
+        return view('task.create', [
+            'card' => $card,
+        ]);
     }
 
     /**

@@ -20,7 +20,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        //
+        return view('board.create');
     }
 
     /**
