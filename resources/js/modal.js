@@ -22,7 +22,7 @@ export function modalPageOld(url = "", data = {}) {
     }
 }
 
-export function modalPage(url = "", data = {}) {
+export function modalPage(url = "", data = {}, width = 30) {
     if (url === "") {
         return;
     } else {
@@ -34,8 +34,7 @@ export function modalPage(url = "", data = {}) {
         iframe.addEventListener('load', () => {
             modal.classList.remove('hidden');
             modalcontainer[0].style.height = `${iframe.contentWindow.document.body.scrollHeight+50}px`;
-            modalcontainer[0].style.width = `${iframe.contentWindow.document.body.scrollWidth+50}px`;
-            // modalcontainer[0].style.width = `${iframe.contentWindow.document.body.scrollWidth}px`;
+            modalcontainer[0].style.width = `${document.body.scrollWidth / 100 * width}px`;
             iframe.style.height = modalcontainer[0].style.height;
             iframe.style.width = modalcontainer[0].style.width;
         });
