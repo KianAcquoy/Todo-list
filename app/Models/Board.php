@@ -28,4 +28,25 @@ class Board extends Model
     {
         return $this->hasManyThrough(Task::class, Card::class);
     }
+
+    public function createDefaultCards()
+    {
+        $this->cards()->createMany([
+            [
+                'name' => 'To Do',
+                'description' => 'Description 1',
+                'order' => 1,
+            ],
+            [
+                'name' => 'In Progress',
+                'description' => 'Description 2',
+                'order' => 2,
+            ],
+            [
+                'name' => 'Done',
+                'description' => 'Description 3',
+                'order' => 3,
+            ],
+        ]);
+    }
 }

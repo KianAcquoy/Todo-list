@@ -28,7 +28,15 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $board = Board::create($request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]));
+        $board->users()->attach(auth()->user()->id);
+        $board->createDefaultCards();
+        return redirect()->route('boards.show', [
+            'board' => $board,
+        ]);
     }
 
     /**
