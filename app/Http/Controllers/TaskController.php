@@ -33,7 +33,14 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cardid = $request->cardid;
+        $card = Card::findOrFail($cardid);
+        $task = new Task();
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->card_id = $card->id;
+        $task->save();
+        return redirect()->route('boards.show', ['board' => $card->board_id]);
     }
 
     /**
