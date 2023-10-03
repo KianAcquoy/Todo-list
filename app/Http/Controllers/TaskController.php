@@ -33,6 +33,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'cardid' => 'required|exists:cards,id'
+        ]);
         $cardid = $request->cardid;
         $card = Card::findOrFail($cardid);
         $task = new Task();
@@ -49,8 +54,29 @@ class TaskController extends Controller
     public function show(string $id)
     {
         $task = Task::findOrFail($id);
+        $comments = [
+            [
+                'id' => 1,
+                'name' => 'John Doe',
+                'comment' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet aliquet ultricies, nunc nisl ultrices nunc, quis aliquam nisl nunc eu nisl. Sed vitae nisl eget nisl aliquam ultricies. Sed vitae nisl eget nisl aliquam ultricies.',
+                'created_at' => '2021-10-01 12:00:00',
+            ],
+            [
+                'id' => 2,
+                'name' => 'John Doe',
+                'comment' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet aliquet ultricies, nunc nisl ultrices nunc, quis aliquam nisl nunc eu nisl. Sed vitae nisl eget nisl aliquam ultricies. Sed vitae nisl eget nisl aliquam ultricies.',
+                'created_at' => '2021-10-01 12:00:00',
+            ],
+            [
+                'id' => 3,
+                'name' => 'John Doe',
+                'comment' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet aliquet ultricies, nunc nisl ultrices nunc, quis aliquam nisl nunc eu nisl. Sed vitae nisl eget nisl aliquam ultricies. Sed vitae nisl eget nisl aliquam ultricies.',
+                'created_at' => '2021-10-01 12:00:00',
+            ],
+        ];
         return view('task.show', [
             'task' => $task,
+            'comments' => $comments,
         ]);
     }
 
