@@ -64,11 +64,20 @@ Array(...draggable).forEach(element => {
         e.dataTransfer.setData("text/plain", element.id);
         element.style.opacity = "0.3";
         setTimeout(() => element.classList.add("dragging"), 0);
+        currentlist = null;
     });
 
-    element.addEventListener("dragend", () => {
+    element.addEventListener("dragend", async (e) => {
         element.style.opacity = "1";
         element.classList.remove("dragging")
+
+        e.preventDefault();
+    
+        const draggedElement = element;
+        if (draggedElement && e.target.classList.contains("dropzone") && e.target) {
+            e.target.appendChild(draggedElement);
+        }
+        await saveBoard();
     });
 });
 
@@ -86,7 +95,6 @@ Array(...dropzone).forEach(element => {
                 return (e.clientY < sibling.getBoundingClientRect().top + sibling.getBoundingClientRect().height / 2);
             });
             currentlist.insertBefore(draggingItem, nextSibling);
-            currentlist = null;
         }
     });
     
@@ -94,6 +102,7 @@ Array(...dropzone).forEach(element => {
         e.preventDefault();
         const data = e.dataTransfer.getData("text/plain");
         const draggedElement = document.getElementById(data);
+        console.log(e.dataTransfer.getData("text/plain"));
         if (draggedElement && e.target.classList.contains("dropzone") && e.target) {
             e.target.appendChild(draggedElement);
         }
