@@ -5,7 +5,7 @@ const tasks = document.getElementsByClassName("task");
 // Task info modal
 Array(...tasks).forEach(task => {
     task.addEventListener("click", () => {
-        modal.modalPage("/tasks/" + task.dataset.id);
+        modal.modalPage("/tasks/" + task.dataset.id, {}, {width: 45});
     });
 });
 

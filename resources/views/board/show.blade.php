@@ -9,7 +9,7 @@
             {{ $board->title }}
         </h2>
     </x-slot>
-    <div class="py-12 w-[100vw]">
+    <div class="py-12 w-full">
         <div class="flex justify-center">
             @foreach ($board->cards as $card)
                 <x-todo.card :card="$card" />

@@ -17,8 +17,8 @@
         @stack('scripts')
         @stack('styles')
     </head>
-    <body class="font-sans antialiased">
-        <div class="h-fit bg-gray-50 rounded-md">
+    <body class="font-sans antialiased bg-gray-50">
+        <div class="h-fit rounded-md">
 
             <!-- Page Heading -->
             @if (isset($header))

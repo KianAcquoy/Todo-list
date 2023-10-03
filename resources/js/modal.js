@@ -1,6 +1,29 @@
 const modal = document.getElementById('modal');
-const modalContent = document.getElementById('modalBody');
 const modalClose = document.getElementById('closeModal');
+const modalContainer = document.getElementById('modalContainer');
+const iframe = document.getElementById('modalBody');
+
+let minheight = 0;
+let maxheight = 80;
+let width = 30;
+
+(function load() {
+    iframe.addEventListener('load', (e) => {
+        e.preventDefault();
+        modal.classList.remove('hidden');
+        iframe.style.width = `${document.body.scrollWidth / 100 * width}px`;
+        let height = iframe.contentWindow.document.body.scrollHeight;
+        if (minheight > 0 && height < minheight) {
+            height = window.top.innerHeight / 100 * minheight;
+        }
+        if (maxheight > 0 && height > window.top.innerHeight / 100 * maxheight) {
+            height = window.top.innerHeight / 100 * maxheight;
+        }
+        iframe.style.height = `${height}px`;
+        modalContainer.style.backgroundColor = window.getComputedStyle(iframe.contentWindow.document.body).backgroundColor;
+    });
+}())
+
 
 modalClose.addEventListener('click', () => {
     modal.classList.add('hidden');
@@ -22,21 +45,15 @@ export function modalPageOld(url = "", data = {}) {
     }
 }
 
-export function modalPage(url = "", data = {}, width = 30) {
+export function modalPage(url = "", data = {}, settings = {}) {
     if (url === "") {
         return;
     } else {
         const queryParams = new URLSearchParams(data);
         url = url + "?" + queryParams.toString();
-        let iframe = document.getElementById('modalBody');
-        let modalcontainer = document.getElementsByClassName('modal-container');
         iframe.setAttribute('src', url);
-        iframe.addEventListener('load', () => {
-            modal.classList.remove('hidden');
-            modalcontainer[0].style.height = `${iframe.contentWindow.document.body.scrollHeight+50}px`;
-            modalcontainer[0].style.width = `${document.body.scrollWidth / 100 * width}px`;
-            iframe.style.height = modalcontainer[0].style.height;
-            iframe.style.width = modalcontainer[0].style.width;
-        });
+        width = settings.width ? settings.width : width;
+        minheight = settings.minheight ? settings.minheight : minheight;
+        console.log('before load')
     }
 }
