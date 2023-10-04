@@ -8,6 +8,7 @@ use App\Models\Card;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Board;
+use App\Models\Label;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,9 @@ class DatabaseSeeder extends Seeder
             ])->each(function ($card) use ($board) {
                 Task::factory(3)->create(['card_id' => $card->id]);
             });
+        });
+        Label::factory(50)->create()->each(function (Label $label) {
+            $label->tasks()->attach(Task::all()->random(6));
         });
         User::factory(10)->create()->each(function (User $user) {
             $user->boards()->attach(Board::all()->random(6));

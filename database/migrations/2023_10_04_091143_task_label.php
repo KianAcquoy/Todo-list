@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('board_user', function (Blueprint $table) {
+        Schema::create('label_task', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('board_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('label_id');
+            $table->unsignedBigInteger('task_id');
         
-            $table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('label_id')->references('id')->on('labels')->onDelete('cascade');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
-        
     }
 
     /**
