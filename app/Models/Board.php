@@ -29,6 +29,15 @@ class Board extends Model
         return $this->hasManyThrough(Task::class, Card::class);
     }
 
+    public function getAllLabelsAttribute()
+    {
+        return $this->cards->flatMap(function ($card) {
+            return $card->tasks->flatMap(function ($task) {
+                return $task->labels;
+            });
+        });
+    }
+
     public function createDefaultCards()
     {
         $this->cards()->createMany([
