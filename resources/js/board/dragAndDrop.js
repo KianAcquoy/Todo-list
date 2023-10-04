@@ -62,10 +62,9 @@ Array(...draggable).forEach(element => {
     });
 
     element.addEventListener("dragend", async (e) => {
+        e.preventDefault();
         element.style.opacity = "1";
         element.classList.remove("dragging")
-
-        e.preventDefault();
     
         const draggedElement = element;
         if (draggedElement && e.target.classList.contains("dropzone") && e.target) {
@@ -90,16 +89,5 @@ Array(...dropzone).forEach(element => {
             });
             currentlist.insertBefore(draggingItem, nextSibling);
         }
-    });
-    
-    element.addEventListener("drop", async (e) => {
-        e.preventDefault();
-        const data = e.dataTransfer.getData("text/plain");
-        const draggedElement = document.getElementById(data);
-        console.log(e.dataTransfer.getData("text/plain"));
-        if (draggedElement && e.target.classList.contains("dropzone") && e.target) {
-            e.target.appendChild(draggedElement);
-        }
-        await saveBoard();
     });
 });
