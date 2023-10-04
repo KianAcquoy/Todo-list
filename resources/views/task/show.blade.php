@@ -17,9 +17,11 @@
             <div class="px-4 flex justify-center items-center">
                 <x-icons.labels />
             </div>
-            <div class="flex space-x-4">
+            <div class="flex flex-wrap space-y-1 space-x-4">
                 <x-todo.label name="{{ Carbon\Carbon::parse($task->due_date)->format('d-m-Y') }}" color="tomato" icon="calendar" />
-                <x-todo.label name="Priority {{ $task->priority }}" color="lightblue" icon="list" />
+                @foreach ($task->labels as $label)
+                    <x-todo.label name="{{ $label->name }}" color="{{ $label->color }}" icon="{{ $label->icon }}" />
+                @endforeach
             </div>
         </div>
         <div id="description" class="flex">
