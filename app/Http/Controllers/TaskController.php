@@ -36,15 +36,21 @@ class TaskController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
-            'cardid' => 'required|exists:cards,id'
+            'card_id' => 'required|exists:cards,id',
+            'due_date' => 'nullable|date',
         ]);
-        $cardid = $request->cardid;
-        $card = Card::findOrFail($cardid);
-        $task = new Task();
+        $card = Card::findOrFail($request->card_id);
+        $task = Task::create(
+            $request->only('name', 'description', 'card_id', 'due_date')
+        );
         $task->name = $request->name;
         $task->description = $request->description;
         $task->card_id = $card->id;
+        $task->due_date = $request->due_date;
         $task->save();
+        if ($request->has('labels')) {
+            $task->labels()->sync($request->input('labels'));
+        }
         return redirect()->route('boards.show', ['board' => $card->board_id]);
     }
 

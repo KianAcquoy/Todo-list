@@ -1,5 +1,7 @@
 <x-popupweb-layout>
-    <div class="p-2 space-y-8 w-[90vw]">
+    <form class="px-2 space-y-6 py-4" method="POST" action="{{ route('tasks.store') }}">
+        @csrf
+        <input type="hidden" name="card_id" value="{{ $card->id }}">
         <div id="title" class="flex w-full">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.plus />
@@ -36,33 +38,26 @@
 
 
         <div id="labels" class="flex w-full">
-            <?php 
-                $labels = [
-                    0 => [
-                        'name' => 'Bug',
-                        'color' => 'tomato'
-                    ],
-                    1 => [
-                        'name' => 'Feature',
-                        'color' => 'lightgreen'
-                    ],
-                    2 => [
-                        'name' => 'Enhancement',
-                        'color' => 'lightblue'
-                    ]
-                ];
-            ?>
             <div class="px-4 flex justify-center items-center">
                 <x-icons.labels />
             </div>
             <div class="space-y-2">
-                @foreach ($labels as $id => $label)
+                <label for="labels[]" class="font-semibold relative">
+                    Labels
+                </label>
+                @foreach ($card->board->allLabels as $label)
                     <div class="flex space-x-1 items-center">
-                        <input type="checkbox" name="label-{{ $id }}" id="label-{{ $id }}">
-                        <x-todo.label :name="$label['name']" :color="$label['color']" />
+                        <input type="checkbox" name="labels[]" id="label-{{ $label->id }}" value="{{ $label->id }}">
+                        <x-todo.label :name="$label->name" :color="$label->color" :icon="$label->icon" />
                     </div>
                 @endforeach
             </div>
         </div>
-    </div>
+
+        <div class="fixed right-4 bottom-4 shadow-md">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded">
+                Create
+            </button>
+        </div>
+    </form>
 </x-popupweb-layout>
