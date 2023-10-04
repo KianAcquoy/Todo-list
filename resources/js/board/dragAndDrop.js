@@ -3,18 +3,12 @@ const dropzone = document.getElementsByClassName("dropzone");
 
 async function saveBoardSend(tasks) {
     let appinfo = document.getElementById("app-information").dataset;
-    const response = await fetch('http://127.0.0.1:8000/api/save-board', {
-        method: "POST",
-        body: JSON.stringify({
-          user_id: appinfo.userId,
-          board_id: appinfo.boardId,
-          tasks: tasks,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
+    const response = await axios.post('/api/save-board', {
+        user_id: appinfo.userId,
+        board_id: appinfo.boardId,
+        tasks: tasks,
     });
-    return await response.json();
+    return response.data;
 }
 
 function getTasks() {
