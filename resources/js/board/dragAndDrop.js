@@ -1,7 +1,7 @@
 const draggable = document.getElementsByClassName("draggable");
 const dropzone = document.getElementsByClassName("dropzone");
 
-async function sendToServer(tasks) {
+async function saveBoardSend(tasks) {
     let appinfo = document.getElementById("app-information").dataset;
     const response = await fetch('http://127.0.0.1:8000/api/save-board', {
         method: "POST",
@@ -54,7 +54,7 @@ function getTaskLocation(taskid) {
 
 function saveBoard() {
     const tasks = getTasks();
-    return sendToServer(tasks);
+    return saveBoardSend(tasks);
 }
 
 
