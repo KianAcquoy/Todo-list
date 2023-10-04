@@ -45,7 +45,7 @@
                 <label for="labels[]" class="font-semibold relative">
                     Labels
                 </label>
-                @foreach ($card->board->allLabels as $label)
+                @foreach ($card->board->labels as $label)
                     <div class="flex space-x-1 items-center">
                         <input type="checkbox" name="labels[]" id="label-{{ $label->id }}" value="{{ $label->id }}">
                         <x-todo.label :name="$label->name" :color="$label->color" :icon="$label->icon" />

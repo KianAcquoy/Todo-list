@@ -14,6 +14,11 @@ class Label extends Model
         'name',
         'color',
     ];
+    
+    public function board()
+    {
+        return $this->belongsTo(Board::class);
+    }
 
     public function tasks()
     {

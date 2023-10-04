@@ -19,16 +19,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Board::factory(10)->create()->each(function (Board $board) {
+            Label::factory(10)->create(['board_id' => $board->id]);
             Card::factory()->createMany([
                 ['name' => 'To Do', 'description' => 'Description 1', 'order' => 1, 'board_id' => $board->id],
                 ['name' => 'In Progress', 'description' => 'Description 2', 'order' => 2, 'board_id' => $board->id],
                 ['name' => 'Done', 'description' => 'Description 3', 'order' => 3, 'board_id' => $board->id]
             ])->each(function ($card) use ($board) {
-                Task::factory(3)->create(['card_id' => $card->id]);
+                Task::factory(3)->create(['card_id' => $card->id])->each(function ($task) use ($board) {
+                    $task->labels()->attach(Label::all()->random(random_int(1, 5)));
+                });
             });
-        });
-        Label::factory(50)->create()->each(function (Label $label) {
-            $label->tasks()->attach(Task::all()->random(6));
         });
         User::factory(10)->create()->each(function (User $user) {
             $user->boards()->attach(Board::all()->random(6));
