@@ -49,6 +49,9 @@ export function modalPage(url = "", data = {}, settings = {}) {
     if (url === "") {
         return;
     } else {
+        minheight = settings.minheight ? settings.minheight : 0;
+        maxheight = settings.maxheight ? settings.maxheight : 80;
+        width = settings.width ? settings.width : 30;
         const queryParams = new URLSearchParams(data);
         url = url + "?" + queryParams.toString();
         iframe.setAttribute('src', url);
