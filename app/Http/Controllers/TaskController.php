@@ -109,6 +109,8 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->route('boards.show', ['board' => $task->card->board]);
     }
 }

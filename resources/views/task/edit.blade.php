@@ -78,7 +78,7 @@
                 @endforeach
             </div>
         </div>
-
+        
         <div class="fixed right-4 bottom-4 shadow-md">
             <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded flex items-center">
                 <div class="pr-1 fill-white">
@@ -88,4 +88,26 @@
             </button>
         </div>
     </form>
+
+    <div id="delete" class="flex w-full py-4">
+        <div class="px-4 flex justify-center items-center">
+            <x-icons.trash />
+        </div>
+        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="w-full flex flex-col space-y-1">
+            @csrf
+            @method('DELETE')
+            <label for="name" class="font-semibold relative">
+                Delete task
+            </label>
+            <p class="text-red-500 text-xs italic">This action cannot be undone.</p>
+            <div class="flex">
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold px-2 py-1 rounded flex items-center">
+                    <div class="pr-1 fill-white">
+                        <x-icons.trash />
+                    </div>
+                    Delete task
+                </button>
+            </div>
+        </form>
+    </div>
 </x-popupweb-layout>

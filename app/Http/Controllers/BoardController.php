@@ -88,6 +88,8 @@ class BoardController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $board = Board::findOrFail($id);
+        $board->delete();
+        return redirect()->route('dashboard');
     }
 }

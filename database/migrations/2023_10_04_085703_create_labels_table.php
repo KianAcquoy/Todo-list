@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('icon')->nullable()->default(null);
             $table->string('name');
             $table->string('color');
-            $table->string('board_id');
+            $table->foreignId('board_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

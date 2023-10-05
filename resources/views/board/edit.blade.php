@@ -2,7 +2,7 @@
     <x-slot name="header">
         Settings of {{ $board->title }}
     </x-slot>
-    <div class="px-2 space-y-2 py-4 w-[90vw]">
+    <div class="px-2 space-y-4 py-4 w-[90vw]">
         <div id="title" class="flex w-full">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.floppydisk />
@@ -105,5 +105,27 @@
                 </form>
             </div>
         </div>
+
+        <div id="delete" class="flex w-full py-4">
+        <div class="px-4 flex justify-center items-center">
+            <x-icons.trash />
+        </div>
+        <form action="{{ route('boards.destroy', $board->id) }}" method="POST" class="w-full flex flex-col space-y-1">
+            @csrf
+            @method('DELETE')
+            <label for="name" class="font-semibold relative">
+                Delete board
+            </label>
+            <p class="text-red-500 text-xs italic">This action cannot be undone.</p>
+            <div class="flex">
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold px-2 py-1 rounded flex items-center">
+                    <div class="pr-1 fill-white">
+                        <x-icons.trash />
+                    </div>
+                    Delete board
+                </button>
+            </div>
+        </form>
+    </div>
     </div>
 </x-popupweb-layout>
