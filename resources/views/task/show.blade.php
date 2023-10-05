@@ -1,5 +1,5 @@
 <x-popupweb-layout>
-    <div class="p-2 space-y-8">
+    <div class="p-2 pb-12 space-y-8">
         <div id="title" class="flex">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.board />
@@ -34,21 +34,6 @@
                 </div>
                 <div class="text-md font-light">
                     {{ $task->description }}
-                </div>
-            </div>
-        </div>
-        <div id="comments" class="flex">
-            <div class="px-4 flex justify-center items-center">
-                <x-icons.bulletlist />
-            </div>
-            <div class="space-y-2">
-                <div class="font-semibold relative">
-                    Comments
-                    <div class="absolute top-0 right-1">
-                    </div>
-                </div>
-                <div class="text-md font-light">
-                    Comment section
                 </div>
             </div>
         </div>
