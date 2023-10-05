@@ -20,3 +20,13 @@ Array(...newTaskButtons).forEach(button => {
     });
 }
 );
+
+// get query param show and open modal of task if true
+const urlParams = new URLSearchParams(window.location.search);
+const show = urlParams.get('show');
+if (show) {
+    modal.modalPage(`/tasks/${show}`, {}, {width: 45});
+    setTimeout(() => {
+        window.history.replaceState({}, document.title, window.top.location.pathname);
+    }, 100);
+}

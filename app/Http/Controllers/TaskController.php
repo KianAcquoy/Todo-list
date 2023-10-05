@@ -43,15 +43,11 @@ class TaskController extends Controller
         $task = Task::create(
             $request->only('name', 'description', 'card_id', 'due_date')
         );
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->card_id = $card->id;
-        $task->due_date = $request->due_date;
         $task->save();
         if ($request->has('labels')) {
             $task->labels()->sync($request->input('labels'));
         }
-        return redirect()->route('boards.show', ['board' => $card->board_id]);
+        return redirect()->route('boards.show', ['board' => $card->board_id, 'show' => $task->id]);
     }
 
     /**
@@ -91,7 +87,11 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('task.edit', [
+            'task' => $task,
+            'card' => $task->card,
+        ]);
     }
 
     /**
@@ -99,7 +99,22 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $request->validate([
+            'card_id' => 'required|exists:cards,id',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date' => 'nullable|date',
+        ]);
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->card_id = $request->card_id;
+        $task->due_date = $request->due_date;
+        $task->save();
+        if ($request->has('labels')) {
+            $task->labels()->sync($request->input('labels'));
+        }
+        return redirect()->route('boards.show', ['board' => $task->card->board, 'show' => $task->id]);
     }
 
     /**

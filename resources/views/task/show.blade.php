@@ -31,11 +31,6 @@
             <div class="space-y-2">
                 <div class="font-semibold relative">
                     Description
-                    <div class="absolute top-0 right-1">
-                        <button class="bg-white hover:bg-gray-100 font-semibold px-2 border border-gray-400 rounded">
-                            Edit
-                        </button>
-                    </div>
                 </div>
                 <div class="text-md font-light">
                     {{ $task->description }}
@@ -56,6 +51,17 @@
                     Comment section
                 </div>
             </div>
+        </div>
+
+        <div class="fixed right-4 bottom-4 shadow-md">
+            <a href="{{ route('tasks.edit', ['task' => $task->id]) }}">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-2 py-1 rounded flex items-center">
+                    <div class="pr-1 fill-white">
+                        <x-icons.pensil />
+                    </div>
+                    Edit
+                </button>
+            </a>
         </div>
     </div>
 </x-popupweb-layout>
