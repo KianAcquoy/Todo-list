@@ -3,19 +3,22 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Board;
+use App\Models\User;
+use App\Models\Task;
 
-class ValidateUserBoard
+class ValidateUserTask
 {
     public function handle($request, Closure $next)
     {
         $user = auth()->user();
-        $board = Board::find($request->route('board'));
+        $task = Task::find($request->route('task'));
 
         // Check if the board exists
-        if (!$board) {
+        if (!$task) {
             return abort(404, 'Board not found');
         }
+
+        $board = $task->card->board;
 
         // Check if the user is connected to the board
         if (!$user->boards()->where('board_id', $board->id)->exists()) {

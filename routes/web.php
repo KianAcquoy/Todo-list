@@ -17,18 +17,13 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::resource('boards', BoardController::class)->middleware('auth');
-Route::resource('tasks', TaskController::class)->middleware('auth');
-Route::get('/boards', [BoardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::put('labels/{boardid}', [LabelController::class, 'store'])->name('labels.store')->middleware('auth');
-Route::delete('labels/{labelid}', [LabelController::class, 'destroy'])->name('labels.destroy')->middleware('auth');
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::redirect('/', '/login');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('boards', BoardController::class);
+    Route::resource('tasks', TaskController::class);
+    Route::get('/boards', [BoardController::class, 'index'])->name('dashboard');
+    Route::put('labels/{boardid}', [LabelController::class, 'store'])->name('labels.store');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

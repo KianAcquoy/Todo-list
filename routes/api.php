@@ -19,9 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
-// Route::middleware('auth:api')->group(function () {
-//     Route::post('/save-board', [DataController::class, 'saveBoard']);
-// });
 Route::post('/save-board', [DataController::class, 'saveBoard'])->middleware(['validate.user.board', 'auth:sanctum']);

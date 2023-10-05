@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BoardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('validate.user.board')->except(['index', 'create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      */

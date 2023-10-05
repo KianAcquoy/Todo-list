@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('validate.user.task')->except(['create', 'store']);
+    }
     /**
      * Display a listing of the resource.
      */
