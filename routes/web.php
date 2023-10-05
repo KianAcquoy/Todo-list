@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
     Route::get('/boards', [BoardController::class, 'index'])->name('dashboard');
     Route::put('labels/{boardid}', [LabelController::class, 'store'])->name('labels.store');
+    Route::delete('labels/{label}', [LabelController::class, 'destroy'])->name('labels.destroy');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
