@@ -33,7 +33,13 @@
                     Description
                 </div>
                 <div class="text-md font-light">
-                    {{ $task->description }}
+                    @if ($task->description == null)
+                        <div class="text-gray-400">
+                            No description
+                        </div>
+                    @else
+                        {{ $task->description }}
+                    @endif
                 </div>
             </div>
         </div>

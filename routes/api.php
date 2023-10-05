@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/save-board', [DataController::class, 'saveBoard'])->middleware(['validate.user.board', 'auth:sanctum']);
+Route::post('/save-board', [DataController::class, 'saveBoard'])->middleware(['auth:sanctum']);
