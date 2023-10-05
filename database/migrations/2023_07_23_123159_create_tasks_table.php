@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description', 10000)->nullable()->default(null);
             $table->foreignId('card_id')->constrained()->onDelete('cascade');
             $table->dateTime('due_date')->nullable()->default(null);
-            $table->integer('priority')->default(0);
+            $table->string('color')->default('#ffffff');
             $table->integer('order')->default(0);
             $table->timestamps();
         });

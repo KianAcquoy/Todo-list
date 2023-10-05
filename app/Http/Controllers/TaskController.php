@@ -37,11 +37,12 @@ class TaskController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
             'card_id' => 'required|exists:cards,id',
+            'color' => 'string|max:255',
             'due_date' => 'nullable|date',
         ]);
         $card = Card::findOrFail($request->card_id);
         $task = Task::create(
-            $request->only('name', 'description', 'card_id', 'due_date')
+            $request->only('name', 'description', 'card_id', 'color', 'due_date')
         );
         $task->save();
         if ($request->has('labels')) {
@@ -104,11 +105,13 @@ class TaskController extends Controller
             'card_id' => 'required|exists:cards,id',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'color' => 'string|max:255',
             'due_date' => 'nullable|date',
         ]);
         $task->name = $request->name;
         $task->description = $request->description;
         $task->card_id = $request->card_id;
+        $task->color = $request->color;
         $task->due_date = $request->due_date;
         $task->save();
         if ($request->has('labels')) {

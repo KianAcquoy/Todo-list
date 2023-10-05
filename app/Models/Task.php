@@ -36,27 +36,4 @@ class Task extends Model
     {
         return $this->belongsToMany(Label::class);
     }
-
-    public function priorityColor()
-    {
-        $color = '';
-        switch ($this->priority) {
-            case 1:
-                $color = 'bg-red-100';
-                break;
-            case 2:
-                $color = 'bg-orange-100';
-                break;
-            case 3:
-                $color = 'bg-yellow-100';
-                break;
-            case 4:
-                $color = 'bg-green-100';
-                break;
-            case 5:
-                $color = 'bg-blue-100';
-                break;
-        }
-        return $color;
-    }
 }

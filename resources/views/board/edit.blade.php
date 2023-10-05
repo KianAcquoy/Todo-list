@@ -2,7 +2,7 @@
     <x-slot name="header">
         Settings of {{ $board->title }}
     </x-slot>
-    <div class="px-2 space-y-2 py-4">
+    <div class="px-2 space-y-2 py-4 w-[90vw]">
         <div id="title" class="flex w-full">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.floppydisk />
@@ -86,12 +86,12 @@
                     <label for="name" class="font-semibold relative">
                         New label
                     </label>
-                    <div class="flex w-full">
+                    <div class="flex w-full items-center">
                         <input type="text" name="name" id="name" class="w-[25vw] border border-gray-400 rounded px-2 mr-2 py-1 @error('name') border-red-500 @enderror" placeholder="Enter name">
                         @error('name')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
-                        <input type="text" name="color" id="color" class="w-[25vw] border border-gray-400 rounded px-2 mr-2 py-1 @error('color') border-red-500 @enderror" placeholder="Enter color" title="Use hex or css colors">
+                        <input type="color" name="color" id="color" class="w-[25vw] border border-gray-400 rounded px-2 mr-2 py-1 @error('color') border-red-500 @enderror" placeholder="Enter color" value="{{ old('color', '#e3dfd5') }}">
                         @error('color')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror

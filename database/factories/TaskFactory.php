@@ -21,7 +21,7 @@ class TaskFactory extends Factory
             'description' => fake()->paragraph(random_int(5, 15)),
             'card_id' => 1,
             'due_date' => fake()->dateTimeBetween('now', '+1 year'),
-            'priority' => fake()->numberBetween(1, 5),
+            'color' => "#ffffff",
             'order' => fake()->numberBetween(0, 100),
         ];
     }
