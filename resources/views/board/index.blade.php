@@ -1,6 +1,6 @@
 <x-app-layout>
     @push('scripts')
-        @vite('resources/js/board/boardInteractions.js')
+        @vite('resources/js/board/homePage.js')
         @vite('resources/js/topWindowFix.js')
     @endpush
     <x-slot name="header">

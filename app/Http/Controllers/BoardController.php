@@ -29,8 +29,8 @@ class BoardController extends Controller
     public function store(Request $request)
     {
         $board = Board::create($request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
+            'title' => 'required|string|max:30',
+            'description' => 'nullable|string|max:500',
         ]));
         $board->users()->attach(auth()->user()->id);
         $board->createDefaultCards();
@@ -55,7 +55,10 @@ class BoardController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $board = Board::findOrFail($id);
+        return view('board.edit', [
+            'board' => $board,
+        ]);
     }
 
     /**
@@ -63,7 +66,16 @@ class BoardController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $board = Board::findOrFail($id);
+        $request->validate([
+            'title' => 'string|max:30',
+            'description' => 'nullable|string|max:500',
+        ]);
+        $board->update($request->all());
+        return redirect()->route('boards.show', [
+            'board' => $board,
+            'show' => 'settings',
+        ]);
     }
 
     /**

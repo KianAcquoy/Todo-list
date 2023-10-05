@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -19,6 +20,8 @@ use App\Http\Controllers\ProfileController;
 Route::resource('boards', BoardController::class)->middleware('auth');
 Route::resource('tasks', TaskController::class)->middleware('auth');
 Route::get('/boards', [BoardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::put('labels/{boardid}', [LabelController::class, 'store'])->name('labels.store')->middleware('auth');
+Route::delete('labels/{labelid}', [LabelController::class, 'destroy'])->name('labels.destroy')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
