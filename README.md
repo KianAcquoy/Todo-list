@@ -4,6 +4,15 @@
 
 This project is a To-Do List application built with Laravel, Tailwind CSS, and plain JavaScript. It allows users to create boards with default columns ("To Do," "In Progress," and "Done"), create and manage tasks within those columns, and use labels to provide additional information about tasks. The project aims to showcase my skills and serves as a potential addition to their portfolio.
 
+## Preview
+
+![todolist-boardoverview](https://github.com/KianAcquoy/Todo-list/assets/118724608/fe3b6cb5-ef4d-4002-8bf4-38e251b2a60f)
+
+![todolist-taskoverview](https://github.com/KianAcquoy/Todo-list/assets/118724608/80284baf-d726-4773-b596-4580734acf2f)
+
+![todolist-taskedit](https://github.com/KianAcquoy/Todo-list/assets/118724608/2a91ef6e-5823-4d67-a013-5cfa5fa96e8d)
+
+
 ## Features
 
 - **User Authentication**: User authentication is managed using Laravel Breeze for web routes and Laravel Sanctum for API authentication.
