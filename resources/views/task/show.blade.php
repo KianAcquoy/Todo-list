@@ -13,17 +13,21 @@
                 </div>
             </div>
         </div>
+        @if ($task->due_date != null && $task->labels->count() != 0)
         <div id="labels" class="flex">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.labels />
             </div>
             <div class="flex flex-wrap space-y-1 space-x-4">
-                <x-todo.label name="{{ Carbon\Carbon::parse($task->due_date)->format('d-m-Y') }}" color="tomato" icon="calendar" />
+                @if ($task->due_date != null)
+                    <x-todo.label name="{{ Carbon\Carbon::parse($task->due_date)->format('d-m-Y') }}" color="tomato" icon="calendar" />
+                @endif
                 @foreach ($task->labels as $label)
                     <x-todo.label name="{{ $label->name }}" color="{{ $label->color }}" icon="{{ $label->icon }}" />
                 @endforeach
             </div>
         </div>
+        @endif
         <div id="description" class="flex">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.paragraph />

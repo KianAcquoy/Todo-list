@@ -7,6 +7,9 @@
                 <x-icons.plus />
             </div>
             <div class="w-[50vw]">
+                <label for="name" class="font-semibold relative">
+                    Name
+                </label>
                 <input type="text" name="name" id="name" class="w-full border border-gray-400 rounded px-2 py-1 @error('title') border-red-500 @enderror" placeholder="Enter name" value="New task">
                 @error('name')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>

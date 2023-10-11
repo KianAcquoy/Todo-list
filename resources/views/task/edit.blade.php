@@ -8,6 +8,9 @@
                 <x-icons.plus />
             </div>
             <div class="w-[50vw]">
+                <label for="name" class="font-semibold relative">
+                    Name
+                </label>
                 <input type="text" name="name" id="name" class="w-full border border-gray-400 rounded px-2 py-1 @error('title') border-red-500 @enderror" placeholder="Enter name" value="{{ $task->name }}">
                 @error('name')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -39,7 +42,7 @@
                 <label for="due_date" class="font-semibold relative">
                     Due date
                 </label>
-                <input type="date" id="due_date" name="due_date" class="w-full border border-gray-400 rounded px-2 py-1 @error('due_date') border-red-500 @enderror" value="{{ Carbon\Carbon::parse($task->due_date)->format('Y-m-d') }}">
+                <input type="date" id="due_date" name="due_date" class="w-full border border-gray-400 rounded px-2 py-1 @error('due_date') border-red-500 @enderror" @if ($task->due_date != null) value="{{ Carbon\Carbon::parse($task->due_date)->format('Y-m-d') }}"@endif>
                 @error('date')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror

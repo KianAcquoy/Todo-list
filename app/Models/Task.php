@@ -14,7 +14,7 @@ class Task extends Model
     ];
 
     protected $fillable = [
-        'title',
+        'name',
         'description',
         'card_id',
         'due_date',
