@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        @if ($task->due_date != null && $task->labels->count() != 0)
+        @if ($task->due_date != null || $task->labels->count() > 0)
         <div id="labels" class="flex">
             <div class="px-4 flex justify-center items-center">
                 <x-icons.labels />
