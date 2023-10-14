@@ -57,6 +57,12 @@
                 <label for="labels[]" class="font-semibold relative">
                     Labels
                 </label>
+                @error('labels')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+                @if ($card->board->labels->isEmpty())
+                    <p class="text-gray-500 text-xs italic">No labels found</p>
+                @endif
                 @foreach ($card->board->labels as $label)
                     <div class="flex space-x-1 items-center">
                         <input type="checkbox" name="labels[]" id="label-{{ $label->id }}" value="{{ $label->id }}">

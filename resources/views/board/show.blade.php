@@ -1,8 +1,8 @@
 <x-app-layout>
     @push('scripts')
-        @vite('resources/js/board/dragAndDrop.js')
-        @vite('resources/js/board/boardPage.js')
-        @vite('resources/js/topWindowFix.js')
+        <script src="{{ asset('js/board/boardPage.js') }}" type="module" defer></script>
+        <script src="{{ asset('js/topWindowFix.js') }}" type="module" defer></script>
+        <script src="{{ asset('js/board/dragAndDrop.js') }}" type="module" defer></script>
     @endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
